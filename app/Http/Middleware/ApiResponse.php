@@ -29,17 +29,17 @@ class ApiResponse
                 )
             );
         }
-        if (in_array($response->status(), [400, 401, 404, 422])) {
+
+        if (in_array($response->status(), [400, 401, 404, 422, 500])) {
             $response->setContent(
                 json_encode(
                     [
                         'success' => false,
-                        'error' => json_decode($response->content())->errors
+                        'error' => json_decode($response->content())->message
                     ]
                 )
             );
         }
-
         return $response;
     }
 }
