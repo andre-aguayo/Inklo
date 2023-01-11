@@ -20,7 +20,8 @@ const i18n = createI18n({
         storeUser: {
           success: 'usuário salvo com sucesso.',
           error: 'Erro ao salvar o usuário.'
-        }
+        },
+        input: { search: 'Buscar por nome' }
       }
     },
   },

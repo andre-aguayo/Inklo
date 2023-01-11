@@ -5,7 +5,7 @@
         <div class="card">
 
           <div class="card-header row">
-            <div class="col-md-2">
+            <div class="col-md-10">
               {{ $t('home.title') }}
             </div>
           </div>
@@ -39,6 +39,11 @@ export default {
   async created() {
     this.users = await usersStore().users;
   },
+  methods: {
+    search() {
+
+    }
+  }
 }
 </script>
 <style scoped>
