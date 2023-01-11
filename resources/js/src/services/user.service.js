@@ -13,7 +13,7 @@ export const usersFromGit = async () => {
   return users;
 };
 
-export const usersStore = await defineStore('users', {
+export const usersStore = defineStore('users', {
   state: async () => ({
     users: null,
     user: null,
