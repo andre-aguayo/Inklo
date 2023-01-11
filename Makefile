@@ -9,17 +9,10 @@ install:
 	yarn install
 	yarn build
 
-first-up:
-	make up
-	make migrate
-
-migrate:
-	./vendor/bin/sail artisan migrate --seed
-
 up: 
 	./vendor/bin/sail up -d
 
-fast-init:
+init:
 	make create-env
 	make install
 	make key-generate
