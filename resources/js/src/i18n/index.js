@@ -6,16 +6,20 @@ const i18n = createI18n({
     br: {
       AppTitle: 'Inklo',
       home: {
-        title: 'Lista de empresas',
-        table: {
-          title: {
-            name: 'Nome',
-            description: 'Descrição',
-            uf: 'UF',
-            city: 'Cidade',
-            email: 'email',
-            phone: 'Telefone'
-          }
+        title: 'Lista de usuários',
+        userCard: {
+          title: 'Cartão com informaçoes do usuário',
+          imgAlt: 'Avatar do usuário',
+          createdAt: 'Usuário desde: ',
+          publicRepos: 'Repositórios públicos: ',
+        }
+      },
+      user: {
+        title: 'Informaçoes do usuário',
+        localStorage: 'Salvar',
+        storeUser: {
+          success: 'usuário salvo com sucesso.',
+          error: 'Erro ao salvar o usuário.'
         }
       }
     },

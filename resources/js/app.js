@@ -1,11 +1,15 @@
 import './bootstrap';
-import '../sass/app.scss'
-import Router from '@/router'
+import '../sass/app.scss';
+import Router from '@/router';
 
 import { createApp } from 'vue';
-import i18n from './src/i18n'
+import { createPinia } from 'pinia';
+import i18n from './src/i18n';
 
+const pinia = createPinia()
 const app = createApp({});
 
+app.use(pinia);
 app.use(Router);
+
 app.use(i18n).mount('#app');
