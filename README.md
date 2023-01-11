@@ -1,4 +1,4 @@
-# coderock
+# Inklo
 
 <!-- PROJECT LOGO -->
 <br />
