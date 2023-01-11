@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Services\CompanyService;
+use App\Services\UserService;
 use App\Services\UserServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,6 +25,6 @@ class BindInterfacesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->bind(UserServiceInterface::class, CompanyService::class);
+        $this->app->bind(UserServiceInterface::class, UserService::class);
     }
 }

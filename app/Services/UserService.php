@@ -2,42 +2,49 @@
 
 namespace App\Services;
 
-use App\Models\User;
-use Illuminate\Database\Eloquent\Collection;
+use Exception;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 
 class UserService implements UserServiceInterface
 {
-    public function list(array $searchParams): Collection
+    public function store(string $login): bool
     {
-        return User::select([
-            'name',
-            'description',
-            'email',
-            'phone',
-            'UF',
-            'city'
-        ])
-            ->where($searchParams)
-            ->get();
+        $user = $this->getUserFromGit($login);
+
+        return $this->createJsonFile($login, $user);
     }
 
-    public function getValidUF(): array
+    private function getUserFromGit(string $login): string
     {
-        return User::select('UF')->groupBy('UF')->get()->toArray();
+        $response = Http::acceptJson()->get("https:/api.github.com/users/" . $login);
+
+        return $response->body();
     }
 
-    public function getValidStateCities($uf): array
+    private function createJsonFile(string $login, string $user): bool
     {
-        return User::select('city')->where('UF', $uf)->groupBy('city')->get()->toArray();
+        if ($this->isJson($user)) {
+            return Storage::disk('public')->put("$login.json", $user);
+        }
+        throw new Exception(__('messages.user.errors.store'));
     }
 
-    public function getValidCity(): array
+    private function isJson($string): bool
     {
-        return User::select('city')->groupBy('city')->get()->toArray();
+        json_decode($string);
+        return json_last_error() === JSON_ERROR_NONE;
     }
 
-    public function checkIfEmailExist(string $email): bool
+    /**
+     * Nao utilizei esta funçao para verificar se o usuário ja foi cadastrado, 
+     * pois, assim nao poderá atualizar as informaçoes
+     */
+    private function checkIfUserExist(string $login): bool
     {
-        return !is_null(User::where(['email' => $email])->first());
+        if (Storage::disk('public')->exists("$login.json"))
+            throw new Exception(__('user.errors.userExists'));
+
+        return false;
     }
 }
