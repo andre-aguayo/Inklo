@@ -15,6 +15,11 @@ class UserService implements UserServiceInterface
         return $this->createJsonFile($login, $user);
     }
 
+    /**
+     * Retrieve user information
+     * @param string $login user login
+     * @return string json response
+     */
     private function getUserFromGit(string $login): string
     {
         $response = Http::acceptJson()->get("https:/api.github.com/users/" . $login);
@@ -22,6 +27,12 @@ class UserService implements UserServiceInterface
         return $response->body();
     }
 
+    /**
+     * json response with user information
+     * @param string $login user login
+     * @param string $user json with user informations
+     * @return bool 
+     */
     private function createJsonFile(string $login, string $user): bool
     {
         if ($this->isJson($user)) {
@@ -30,9 +41,14 @@ class UserService implements UserServiceInterface
         throw new Exception(__('messages.user.errors.store'));
     }
 
-    private function isJson($string): bool
+    /**
+     * Check if response is a json format
+     * @param string $json 
+     * @return bool
+     */
+    private function isJson(string $json): bool
     {
-        json_decode($string);
+        json_decode($json);
         return json_last_error() === JSON_ERROR_NONE;
     }
 
