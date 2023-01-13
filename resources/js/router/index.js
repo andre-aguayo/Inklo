@@ -1,11 +1,16 @@
-import { createWebHistory, createRouter, useRoute } from 'vue-router';
+import { createWebHistory, createRouter } from 'vue-router';
 
 const Home = () => import('../components/home/index.vue');
 const User = () => import('../components/User/index.vue');
 
 const routes = [
     {
+        path: "/",
+        redirect: "/users",
         name: "Home",
+    },
+    {
+        name: "Users",
         path: "/users",
         component: Home,
     },
@@ -22,7 +27,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    document.title = to.meta.title;
+    document.title = to.name;
     next();
 })
 export default router

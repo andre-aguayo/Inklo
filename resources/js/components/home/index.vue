@@ -6,7 +6,7 @@
 
           <div class="card-header row">
             <div class="col-md-9">
-              {{ $t('home.title') }}
+              {{ $t('users.title') }}
             </div>
             <div class="col-md-3">
               <div class="input-group rounded">

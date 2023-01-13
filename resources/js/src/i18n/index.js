@@ -5,7 +5,7 @@ const i18n = createI18n({
   messages: {
     br: {
       AppTitle: 'Inklo',
-      home: {
+      users: {
         title: 'Lista de usuários',
         userCard: {
           title: 'Cartão com informaçoes do usuário',

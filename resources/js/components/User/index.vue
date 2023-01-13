@@ -58,11 +58,11 @@ export default {
 
       if (response.data.success) {
         this.$toast.info(this.$t(`user.storeUser.success`));
-        setTimeout(this.$toast.clear, 3000);
       } else {
         this.$toast.error(this.$t(`user.storeUser.error`));
-        setTimeout(this.$toast.clear, 3000);
       }
+      
+      setTimeout(this.$toast.clear, 3000);
     }
   },
 }
