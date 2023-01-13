@@ -52,6 +52,7 @@ export default {
   },
   methods: {
     async storeUser() {
+      const loader = this.$loading.show(); //show loader spinner
       const response = await localStoreUser(this.$route.params.user);
 
       if (response.data.success) {
@@ -60,6 +61,7 @@ export default {
         this.$toast.error(this.$t(`user.storeUser.error`));
       }
 
+      loader.hide(); //hide loader spinner
       setTimeout(this.$toast.clear, 3000);
     }
   },
