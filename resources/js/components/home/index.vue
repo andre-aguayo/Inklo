@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-12">
-        <div class="card">
+        <div class="card mt-5">
 
           <div class="card-header row">
             <div class="col-md-9">
@@ -60,7 +60,7 @@ export default {
       let visibleUsers = [];
 
       this.users.forEach((user) => {
-        if (user.data.name.match(`${this.searchParam}`))
+        if (user.data.name.match(new RegExp(this.searchParam, 'gi')))
           visibleUsers.push(user);
       });
 
