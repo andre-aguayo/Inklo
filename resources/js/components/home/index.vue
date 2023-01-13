@@ -25,7 +25,7 @@
           </div>
 
           <div class="card-body row" v-if="visibleUsers">
-            <div class="col-3" v-for="user in visibleUsers">
+            <div class="col-md-3" v-for="user in visibleUsers">
               <router-link class="card-link" :to="`/users/${user.data.login}`">
                 <userCard :user="user.data"></userCard>
               </router-link>
