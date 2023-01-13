@@ -53,8 +53,11 @@ export default {
     userCard
   },
   async created() {
-    this.visibleUsers = this.users = await usersStore().users;
+    const loader = this.$loading.show(); //show loader spinner
 
+    this.visibleUsers = await usersStore().users;
+
+    loader.hide(); //hide loader spinner
   },
   methods: {
     search() {

@@ -11,7 +11,7 @@
           <span class="name">{{ user.login }}</span>
           <span class="name">{{ user.location }}</span>
 
-          <div class="card text-center mt-2">
+          <div v-if="user.bio" class="card text-center mt-2">
             <div class="card-body">
               <p class="card-text">{{ user.bio }}</p>
             </div>
@@ -43,10 +43,12 @@ export default {
     }
   },
   async mounted() {
+    const loader = this.$loading.show(); //show loader spinner
     const response = await usersStore().getUser(this.$route.params.user);
 
     this.repos = response.repos.data;
-    this.user = response.user.data
+    this.user = response.user.data;
+    loader.hide(); //hide loader spinner
   },
   methods: {
     async storeUser() {
