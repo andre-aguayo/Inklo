@@ -43,7 +43,7 @@ export default {
   data() {
     return {
       repos: {},
-      user: {}
+      user: {},
     }
   },
   async mounted() {
@@ -57,10 +57,12 @@ export default {
       const response = await localStoreUser(this.$route.params.user);
 
       if (response.data.success) {
-        return alert('Usuário salvo com sucesso.');
+        this.$toast.info(this.$t(`user.storeUser.success`));
+        setTimeout(this.$toast.clear, 3000);
+      } else {
+        this.$toast.error(this.$t(`user.storeUser.error`));
+        setTimeout(this.$toast.clear, 3000);
       }
-
-      return alert($t('Erro ao salvar o usuário localmente.'));
     }
   },
 }

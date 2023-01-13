@@ -18,7 +18,7 @@ const i18n = createI18n({
         title: 'Informaçoes do usuário',
         localStorage: 'Salvar',
         storeUser: {
-          success: 'usuário salvo com sucesso.',
+          success: 'Usuário salvo com sucesso.',
           error: 'Erro ao salvar o usuário.'
         },
         input: { search: 'Buscar por nome' }
