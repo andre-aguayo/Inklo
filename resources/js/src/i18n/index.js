@@ -7,6 +7,7 @@ const i18n = createI18n({
       AppTitle: 'Inklo',
       users: {
         title: 'Lista de usuários',
+        searchPlaceholder: 'Buscar',
         userCard: {
           title: 'Cartão com informaçoes do usuário',
           imgAlt: 'Avatar do usuário',
@@ -17,6 +18,7 @@ const i18n = createI18n({
       user: {
         title: 'Informaçoes do usuário',
         localStorage: 'Salvar',
+        repo:'Repositórios:',
         storeUser: {
           success: 'Usuário salvo com sucesso.',
           error: 'Erro ao salvar o usuário.'

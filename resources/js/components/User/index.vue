@@ -7,11 +7,19 @@
             width="150" />
         </div>
         <div class="d-flex flex-column justify-content-center align-items-center">
-          <h5 class="mb-2">{{ user.name }}</h5>
-          <span class="name mt-3">{{ user.login }}</span>
+          <h5 class="mt-3">{{ user.name }}</h5>
+          <span class="name">{{ user.login }}</span>
+          <span class="name">{{ user.location }}</span>
+
+          <div class="card text-center mt-2">
+            <div class="card-body">
+              <p class="card-text">{{ user.bio }}</p>
+            </div>
+          </div>
 
           <!-- Repos links -->
-          <div class="flex-row justify-content-center align-items-center gap-2 mb-1">
+          <div class="flex-row justify-content-center align-items-center gap-2 mb-1 mt-5">
+            <h5 class="card-text">{{ $t('user.repo') }}</h5>
             <a v-for="repo in repos" :href="repo.html_url" target="_blank">
               <span class="btn btn-light me-2 mb-2">{{ repo.description || repo.name }}</span></a>
           </div>
@@ -21,18 +29,6 @@
         </div>
       </div>
     </div>
-
-    <div ref="container" class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-      <div class="toast fade opacity-75 bg-danger" role="alert" aria-live="assertive" aria-atomic="true"
-        data-bs-delay="15000">
-        <div class="toast-header bg-danger">
-          <strong class="me-auto text-white">Error</strong>
-          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body text-white error-body">dcsadasda</div>
-      </div>
-    </div>
-
   </div>
 </template>
 <script>
@@ -61,7 +57,7 @@ export default {
       } else {
         this.$toast.error(this.$t(`user.storeUser.error`));
       }
-      
+
       setTimeout(this.$toast.clear, 3000);
     }
   },
