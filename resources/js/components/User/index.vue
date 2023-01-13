@@ -1,51 +1,56 @@
 <template>
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header row">
-            <div class="col-md-2">
-              {{ $t('user.title') }}
-            </div>
-          </div>
-          <div class="card-body" v-if="repos.length">
-            <div class="card-title">
-              <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
-                <div class="card p-4">
-                  <div class=" image d-flex flex-column justify-content-center align-items-center">
-                    <img :src="repos[0].owner.avatar_url" :alt="$t('home.userCard.imgAlt')" height="150" width="150" />
-                    <span class="name mt-3">{{ repos[0].login }}</span>
-                    <span class="idd">{{ repos[0].name }}</span>
+      <div class="card p-4 mt-5">
+        <div class=" image d-flex flex-column justify-content-center align-items-center ">
+          <img :src="user.avatar_url" :alt="$t('home.userCard.imgAlt')" class="rounded-circle" height="150"
+            width="150" />
+        </div>
+        <div class="d-flex flex-column justify-content-center align-items-center">
+          <h5 class="mb-2">{{ user.name }}</h5>
+          <span class="name mt-3">{{ user.login }}</span>
 
-                    <div class="d-flex flex-row justify-content-center align-items-center gap-2" v-for="repo in repos">
-                      <a :href="repo.html_url" target="_blank"><span class="idd1">{{ repo.description }}</span></a>
-                    </div>
-                    <div class=" d-flex mt-2">
-                      <button class="btn1 btn-dark" @click="storeUser">{{ $t('user.localStorage') }}</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <!-- Repos links -->
+          <div class="flex-row justify-content-center align-items-center gap-2 mb-1">
+            <a v-for="repo in repos" :href="repo.html_url" target="_blank">
+              <span class="btn btn-light me-2 mb-2">{{ repo.description || repo.name }}</span></a>
+          </div>
+          <div class=" d-flex mt-2">
+            <button class="btn btn-primary" @click="storeUser">{{ $t('user.localStorage') }}</button>
           </div>
         </div>
       </div>
     </div>
+
+    <div ref="container" class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+      <div class="toast fade opacity-75 bg-danger" role="alert" aria-live="assertive" aria-atomic="true"
+        data-bs-delay="15000">
+        <div class="toast-header bg-danger">
+          <strong class="me-auto text-white">Error</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body text-white error-body">dcsadasda</div>
+      </div>
+    </div>
+
   </div>
 </template>
 <script>
 import { usersStore } from '../../src/services/user.service';
-import { localStoreUser } from '../../src/services/api.service';
+import { localStoreUser } from '../../src/services/api/api.service';
 
 export default {
   data() {
     return {
       repos: {},
+      user: {}
     }
   },
   async mounted() {
     const response = await usersStore().getUser(this.$route.params.user);
-    this.repos = response.data;
+
+    this.repos = response.repos.data;
+    this.user = response.user.data
   },
   methods: {
     async storeUser() {

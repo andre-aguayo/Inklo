@@ -1,4 +1,4 @@
-import { getUserInformationFromGit, getUserReposFromGit } from './api.service';
+import { getUserInformationFromGit, getUserReposFromGit } from './api/api.service';
 import { defineStore } from 'pinia';
 
 const usersLogin = ['wallysonn', 'diego3g', 'filipedeschamps', 'rmanguinho'];
@@ -31,7 +31,10 @@ export const usersStore = defineStore('users', {
       return await usersFromGit();
     },
     async getUser(login) {
-      return await getUserReposFromGit(login);
+      return {
+        repos: await getUserReposFromGit(login),
+        user: await getUserInformationFromGit(login)
+      };
     }
   }
 });

@@ -9,7 +9,7 @@ import i18n from './src/i18n';
 const pinia = createPinia()
 const app = createApp({});
 
-app.use(pinia);
 app.use(Router);
+app.use(pinia);
 
 app.use(i18n).mount('#app');
