@@ -14,11 +14,15 @@ up:
 watch:
 	yarn dev
 
+front-build:
+	yarn build
+
 init:
 	make create-env
 	make install
 	make key-generate
-	make watch
+	make front-build
+	make up
 
 test: 
 	./vendor/bin/sail test
