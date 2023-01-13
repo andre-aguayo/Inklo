@@ -7,7 +7,7 @@ const i18n = createI18n({
       AppTitle: 'Inklo',
       users: {
         title: 'Lista de usuários',
-        searchPlaceholder: 'Buscar',
+        input: { search: 'Buscar pelo nome' },
         userCard: {
           title: 'Cartão com informaçoes do usuário',
           imgAlt: 'Avatar do usuário',
@@ -23,7 +23,6 @@ const i18n = createI18n({
           success: 'Usuário salvo com sucesso.',
           error: 'Erro ao salvar o usuário.'
         },
-        input: { search: 'Buscar por nome' }
       }
     },
   },

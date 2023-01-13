@@ -10,8 +10,8 @@
             </div>
             <div class="col-md-3">
               <div class="input-group rounded">
-                <input type="search" class="form-control rounded" :placeholder="$t('users.searchPlaceholder')"
-                  :aria-label="$t('users.searchPlaceholder')" aria-describedby="search-addon" v-model="searchParam"
+                <input type="search" class="form-control rounded" :placeholder="$t('users.input.search')"
+                  :aria-label="$t('users.input.search')" aria-describedby="search-addon" v-model="searchParam"
                   @input="search" />
                 <span class="input-group-text border-0" id="search-addon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
